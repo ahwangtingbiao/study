@@ -1,0 +1,17 @@
+/*
+#postion1 {
+    width: 100px;
+    height: 100px;
+    background: red;
+    position: relative;
+    left: 20px;
+    top: 20px;
+}
+*/
+
+#postion1 {
+    width: 100px;
+    height: 100px;
+    background: red;
+    position: static;
+}
