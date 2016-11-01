@@ -8,3 +8,6 @@
 ##放弃本地修改，直接覆盖之
 ^ git reset --hard
 ^ git pull
+
+
+教程链接：http://www.bootcss.com/p/git-guide/
