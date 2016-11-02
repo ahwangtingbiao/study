@@ -23,6 +23,8 @@ div:hover {
     transform: rotate(360deg);
 }*/
 
+
+/*
 div {
     background-color: aqua;
     height: 1000px;
@@ -50,4 +52,34 @@ div {
 
 div:hover {
     -webkit-animation: mycolor 1s linear;
+}*/
+
+div {
+    position: absolute;
+    background-color: yellow;
+    top: 100px;
+    width: 500px;
+}
+
+@-webkit-keyframes mycolor {
+    0% {
+        background-color: firebrick;
+        transform: rotate(0deg)
+    }
+    30% {
+        background-color: cadetblue;
+        transform: rotate(30deg)
+    }
+    6% {
+        background-color: lightcoral;
+        transform: rotate(-30deg)
+    }
+    100% {
+        background-color: red;
+        transform: rotate(0deg)
+    }
+}
+
+div:hover {
+    -webkit-animation: mycolor 5s linear;
 }
