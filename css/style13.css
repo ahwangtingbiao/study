@@ -1,0 +1,32 @@
+/*盒子类型*/
+
+
+/*
+div {
+    background-color: aqua;
+    display: inline-block;
+    width: 300px;
+}
+
+span {
+    background-color: brown;
+    display: inline-block;
+    width: 300px;
+}*/
+
+
+/*
+table {
+    border: 3px solid #00aaff;
+    display: inline-table;
+}
+
+td {
+    border: 1px solid red;
+}*/
+
+div {
+    display: list-item;
+    list-style: circle;
+    margin-left: 30px;
+}
