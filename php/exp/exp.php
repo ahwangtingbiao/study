@@ -1,41 +1,5 @@
 <?php
- 
- //创建文件夹
- function createDir($aimUrl) {
-        $aimUrl = str_replace('', '/', $aimUrl);
-        $aimDir = '';
-        $arr = explode('/', $aimUrl);
-        $result = true;
-        foreach ($arr as $str) {
-            $aimDir .= $str . '/';
-            if (!file_exists($aimDir)) {
-                $result = mkdir($aimDir);
-            }
-        }
-        return $result;
-    }
-	
- // 删除文件夹 
-function deldir($dir) {
-  $dh=opendir($dir);
-  while ($file=readdir($dh)) {
-    if($file!="." && $file!="..") {
-      $fullpath=$dir."/".$file;
-      if(!is_dir($fullpath)) {
-          unlink($fullpath);
-      } else {
-          deldir($fullpath);
-      }
-    }
-  }
-  closedir($dh);
-  //删除当前文件夹：
-  if(rmdir($dir)) {
-    return true;
-  } else {
-    return false;
-  }
-}
+include('inc/function.php');
 
 //uuid生成
 function guid(){
