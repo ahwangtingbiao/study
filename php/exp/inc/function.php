@@ -55,4 +55,23 @@ function delFile($dirName){
         closedir( $handle);
     }
 }
+
+//文件复制
+function recurse_copy($src,$des) {
+    $dir = opendir($src);
+    @mkdir($des);
+    while(false !== ( $file = readdir($dir)) ) {
+             if (( $file != '.' ) && ( $file != '..' )) {
+                    if ( is_dir($src . '/' . $file) ) {
+                            recurse_copy($src . '/' . $file,$des . '/' . $file);
+                    }  else  {
+                            copy($src . '/' . $file,$des . '/' . $file);
+                    }
+            }
+      }
+    
+     closedir($dir);
+   }
+   
+
 ?>

@@ -186,6 +186,11 @@ function queueComplete(numFilesUploaded) {
     status.innerHTML = numFilesUploaded + " 个表情已上传.";
 }
 
+function queueComplete_pre(numFilesUploaded) {
+    var status = document.getElementById("divStatus_pre");
+    status.innerHTML = "预览图已上传.";
+}
+
 
 function fileDialogStart() {
     window.open('reset.php', '清除图片缓存', 'width=300px,height=300px,titlebar=no,status=no,location=no,directories=no');
