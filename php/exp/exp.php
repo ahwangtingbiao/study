@@ -1,4 +1,4 @@
- <?php 
+<?php 
  
  //创建文件夹
  function createDir($aimUrl) {
@@ -14,6 +14,45 @@
         }
         return $result;
     }
+	
+ // 删除文件夹 
+function deldir($dir) {
+  $dh=opendir($dir);
+  while ($file=readdir($dh)) {
+    if($file!="." && $file!="..") {
+      $fullpath=$dir."/".$file;
+      if(!is_dir($fullpath)) {
+          unlink($fullpath);
+      } else {
+          deldir($fullpath);
+      }
+    }
+  }
+  closedir($dh);
+  //删除当前文件夹：
+  if(rmdir($dir)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+//uuid生成
+function guid(){
+    if (function_exists('com_create_guid')){
+        return com_create_guid();
+    }else{
+        mt_srand((double)microtime()*10000);
+        $charid = md5(uniqid(rand(), true));
+        $hyphen = chr(45);// "-"
+        $uuid = substr($charid, 0, 8).$hyphen
+                .substr($charid, 8, 4).$hyphen
+                .substr($charid,12, 4).$hyphen
+                .substr($charid,16, 4).$hyphen
+                .substr($charid,20,12);
+        return $uuid;
+    }
+}
 
  //写入配置
  function write_ini_file($assoc_arr, $path, $has_sections=FALSE) { 
@@ -46,7 +85,7 @@
             else if($elem=="") $content .= $key2." = n"; 
             else $content .= $key2." = ".$elem."\n"; 
         } 
-    } 
+    }
     if (!$handle = fopen($path, 'w')) { 
         return false; 
     } 
@@ -60,6 +99,17 @@
 //写入
 $num = $_POST['num'];//表情个数
 $type = $_POST['type'];//表情类型
+$name = $_POST['name'];
+if(!$_POST['uid'])
+{
+$uid = guid();	
+}else{
+$uid=$_POST['uid'];
+}
+
+$version = $_POST['version'];
+$description = $_POST['description'];
+
 switch($type){
 	case 'dynamic':
 	$_EXPRESSION_TYPE_QQ = "7";//QQGIF类型
@@ -129,28 +179,28 @@ $wx_expression_land = array(
                     'TYPE' => $_EXPRESSION_TYPE_WX,
                     'SIZE' => $_EXPRESSION_SIZE_L,
                     'CHILDREN' => $_EXPRESSION_CHILDREN,
-                ));			
+                ));		
 	
 $info = array(
                 'INFO' => array(
                     'PLATFORM' => 'android',
-                    'VERSION' => $_VERSION,
-                    'NAME' => $_NAME,
-                    'AUTHOR' => $_AUTHOR,                
+                    'VERSION' => $varsion,
+                    'NAME' => $name,
+                    'AUTHOR' => $author,                
                     'PREVIEW' => 'preview',                
-                    'ID' => $ID,                
+                    'ID' => $uid,                
                     'BASE' => 'templet',                
                     'CONTENT' => 'templet,templet_mm',                
-                    'DESCRIPTION' => $DESCRIPTION,                
+                    'DESCRIPTION' => $description,                
                 ),
                 'templet' => array(
-                    'NAME' => $_NAME,
+                    'NAME' => $name,
                     'DIR' => 'templet', 
                     'SUPPORT' => 'com.tencent.mobileqq',
                     'SUPPORT_VERSION_MIN' => '60',                    
 				),				
 				'templet_mm' => array(
-                    'NAME' => $_NAME,
+                    'NAME' => $name,
                     'DIR' => 'templet_mm', 
                     'SUPPORT' => 'com.tencent.mobileqq',
                     'SUPPORT_VERSION_MIN' => '0',      
@@ -174,12 +224,15 @@ write_ini_file($wx_expression, $wxdir.'expression.ini', true);
 write_ini_file($wx_expression_land, $wxdir_land.'expression.ini', true);
 write_ini_file($info,$expdir.'/info.ini', true);
 
-//print_r($qq_expression);
 
 $exportPath = $rootdir;//设置需要打包的目录
 $filename =$rootdir.".exp";//设置压缩包的文件名
 
-include('pack.php');
+include('pack.php');//开始打包并下载
+
+unlink($filename);//删除文件
+delDir($rootdir);//删除目录
+
 
 //读取配置
 /* $info = parse_ini_file("temp/info.ini",true);
