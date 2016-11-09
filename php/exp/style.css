@@ -9,7 +9,7 @@ body {
 }
 
 #container {
-	width: 50%;
+	width: 720px;
 	height: auto;
 	margin: 5% auto;
 	text-align: center;
@@ -48,4 +48,10 @@ textarea {
 	padding: 5px;
 	border: 1px solid #ccc;
 	border-radius: 5px;
+}
+
+.footer {
+	width: 100%;
+	position: fixed;
+	bottom: 0px;
 }
