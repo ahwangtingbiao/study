@@ -4,7 +4,7 @@
 }
 
 body {
-	font-family: '微软雅黑', '宋体';
+	font-family: 'Ã¥Â¾Â®Ã¨Â½Â¯Ã©â€ºâ€¦Ã©Â»â€˜', 'Ã¥Â®â€¹Ã¤Â½â€œ';
 	font-size: 14px;
 	color: #666;
 }
@@ -47,25 +47,26 @@ body {
 }
 
 #container {
-	width: 1080px;
+	width: 760px;
 	height: auto;
 	margin: 5% auto;
+	padding-left: 70px;
 	text-align: center;
 }
 
 .upload {
 	position: relative;
-	width: 540px;
+	width: 400px;
 	float: left;
 	overflow: hidden;
-	margin-right: -90px;
+	/* margin-right: -90px; */
+	/* padding-left: 40px; */
 }
 
 .info {
-	position: relative;
-	width: 500px;
-	float: right;
-	overflow: hidden;
+	/* position: relative; */
+	/* width: 260px; */
+	float: left;
 	text-align: right;
 	padding: 20px;
 }
@@ -84,7 +85,7 @@ body {
 #uploadform,
 #uploadform_gif,
 #uploadform_pre {
-	margin-left: 160px;
+	/* margin-left: 160px; */
 }
 
 

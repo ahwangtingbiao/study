@@ -1,6 +1,6 @@
 array (
   'dirname' => '.',
-  'basename' => 'preview.png',
+  'basename' => '16.png',
   'extension' => 'png',
-  'filename' => 'preview',
+  'filename' => '16',
 )
