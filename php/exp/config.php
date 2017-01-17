@@ -42,7 +42,7 @@ $qq_expression = array(
                     'CHILDREN' => $_EXPRESSION_CHILDREN,
                 ));
 
-if($type='dynamic'){
+if($type=='dynamic'){
 	for ($i=1; $i<=$num; $i++) {
 			$qq_expression['Expression_'.$i] = array(
                     'TITLE'=> $i,
